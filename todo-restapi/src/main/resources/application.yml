@@ -2,36 +2,21 @@ server:
   servlet:
     context-path: "/api"
 
-logging:
-  level:
-    root: INFO
-    se:
-      hexastudio:
-        kitsapi: DEBUG
-    org:
-      springframework:
-        boot:
-          autoconfigure: INFO
 spring:
-  profiles:
-    active: local
-
-
-  env:
-    - name: SPRING_APPLICATION_JSON
   datasource:
-    url:
+    url: jdbc:mysql://127.0.0.1:3310/todo
     username: root
     password: root
+
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-        jdbc:
-          time_zone: UTC
     show-sql: false
+
+
 
 
 

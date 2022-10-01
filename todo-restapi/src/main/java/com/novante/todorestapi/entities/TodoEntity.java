@@ -14,5 +14,30 @@ public class TodoEntity {
 
     private String todoName;
 
+    private String todoContent;
 
+
+    public Long getTodoId() {
+        return todoId;
+    }
+
+    public void setTodoId(Long todoId) {
+        this.todoId = todoId;
+    }
+
+    public String getTodoName() {
+        return todoName;
+    }
+
+    public void setTodoName(String todoName) {
+        this.todoName = todoName;
+    }
+
+    public String getTodoContent(){
+        return todoContent;
+    }
+
+    public void setTodoContent(String todoContent){
+        this.todoContent = todoContent;
+    }
 }

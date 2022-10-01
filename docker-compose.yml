@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  mysql:
+    image: "mysql:8.0-oracle"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_USERNAME: "root"
+      MYSQL_PASSWORD: "root"
+      MYSQL_DATABASE: "todo"
+    ports:
+      - "3310:3306"
+    networks:
+      - internal
+
+#  rest-api:
+#    ports:
+#      - "8080:8080"
+#    build:
+#      context: rest-api
+#    entrypoint: "java -jar -Dspring.profiles.active=dev todo-restapi-0.0.1-SNAPSHOT.jar"
+#    networks:
+#      - internal
+#      - external
+
+networks:
+  internal:
+  external:
+
