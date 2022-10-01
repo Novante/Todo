@@ -1,9 +1,6 @@
 package com.novante.todorestapi.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Todo {
@@ -16,6 +13,8 @@ public class Todo {
 
     private String todoContent;
 
+    @ManyToOne
+    private TodoList todoList;
 
     public Long getTodoId() {
         return todoId;
@@ -33,11 +32,19 @@ public class Todo {
         this.todoName = todoName;
     }
 
-    public String getTodoContent(){
+    public String getTodoContent() {
         return todoContent;
     }
 
-    public void setTodoContent(String todoContent){
+    public void setTodoContent(String todoContent) {
         this.todoContent = todoContent;
+    }
+
+    public TodoList getTodoList() {
+        return todoList;
+    }
+
+    public void setTodoList(TodoList todoList) {
+        this.todoList = todoList;
     }
 }
