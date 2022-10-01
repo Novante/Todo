@@ -2,11 +2,13 @@ package com.novante.todorestapi.services;
 
 import com.novante.todorestapi.entities.Todo;
 import com.novante.todorestapi.entities.TodoList;
+import com.novante.todorestapi.entities.User;
 import com.novante.todorestapi.repositories.TodoListRepository;
 import com.novante.todorestapi.repositories.TodoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoService {
@@ -37,14 +39,22 @@ public class TodoService {
     public Todo modifyTodoItem(Todo todoItem, Long userId) {
         Todo foundTodoItem = todoRepository.findTodoByTodoIdAndTodoList_User_UserId(todoItem.getTodoId(), userId);
 
-            if (todoItem.getTodoName() != null){
-                foundTodoItem.setTodoName(todoItem.getTodoName());
-            }
-            if (todoItem.getTodoContent() != null){
-                foundTodoItem.setTodoContent(todoItem.getTodoContent());
-            }
+        if (todoItem.getTodoName() != null) {
+            foundTodoItem.setTodoName(todoItem.getTodoName());
+        }
+        if (todoItem.getTodoContent() != null) {
+            foundTodoItem.setTodoContent(todoItem.getTodoContent());
+        }
 
-            todoRepository.save(foundTodoItem);
+        todoRepository.save(foundTodoItem);
         return foundTodoItem;
     }
+
+    public String deleteTodoItem(Long todoItemId, Long userId) {
+        Todo foundTodoItem = todoRepository.findTodoByTodoIdAndTodoList_User_UserId(todoItemId, userId);
+        foundTodoItem.getTodoList().getTodoItems().remove(foundTodoItem);
+        todoRepository.delete(foundTodoItem);
+        return "Successfully deleted TodoItem with id: " + todoItemId;
+    }
+
 }

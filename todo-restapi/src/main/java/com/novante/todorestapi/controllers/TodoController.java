@@ -30,6 +30,10 @@ public class TodoController {
     public Todo modifyTodoItem(@RequestBody Todo todoItem, @PathVariable Long userId) {
         return todoService.modifyTodoItem(todoItem, userId);
     }
+    @DeleteMapping("/todoItemId/{todoItemId}/userId/{userId}")
+    public String deleteTodoItem(@PathVariable Long todoItemId, @PathVariable Long userId){
+        return todoService.deleteTodoItem(todoItemId, userId);
+    }
 
 
 }
