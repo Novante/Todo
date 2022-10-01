@@ -1,5 +1,7 @@
 package com.novante.todorestapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,40 +15,41 @@ public class TodoList {
     private String todoListName;
 
     @ManyToOne
+    @JsonIgnore
     private User user;
 
     @OneToMany
     private List<Todo> todoItems;
 
-    private Long getTodoListId() {
+    public Long getTodoListId() {
         return todoListId;
     }
 
-    private void setTodoListId(Long todoListId) {
+    public void setTodoListId(Long todoListId) {
         this.todoListId = todoListId;
     }
 
-    private String getTodoListName() {
+    public String getTodoListName() {
         return todoListName;
     }
 
-    private void setTodoListName(String todoListName) {
+    public void setTodoListName(String todoListName) {
         this.todoListName = todoListName;
     }
 
-    private User getUser(){
+    public User getUser(){
         return user;
     }
 
-    private void setUser(User user){
+    public void setUser(User user){
         this.user = user;
     }
 
-    private List<Todo> getTodoItems() {
+    public List<Todo> getTodoItems() {
         return todoItems;
     }
 
-    private void setTodoItems(List<Todo> todoItems) {
+    public void setTodoItems(List<Todo> todoItems) {
         this.todoItems = todoItems;
     }
 }

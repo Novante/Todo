@@ -17,31 +17,31 @@ public class User {
     @OneToMany
     private List<TodoList> todoLists;
 
-    private Long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    private void setUserId(Long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    private String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    private void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    private List<TodoList> getTodoLists() {
+    public List<TodoList> getTodoLists() {
         return todoLists;
     }
 
-    private void setTodoLists(List<TodoList> todoLists) {
+    public void setTodoLists(List<TodoList> todoLists) {
         this.todoLists = todoLists;
     }
 }
