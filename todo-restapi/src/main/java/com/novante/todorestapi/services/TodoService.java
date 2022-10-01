@@ -31,8 +31,8 @@ public class TodoService {
 
         if (foundUser.isPresent()){
             foundUser.get().getTodoLists().add(todoList);
-            todoList.setUser(foundUser.get());
-            todoListRepository.save(todoList);
+//            todoList.setUser(foundUser.get());
+//            todoListRepository.save(todoList);
             userRepository.save(foundUser.get());
         }
 
@@ -41,6 +41,19 @@ public class TodoService {
 
     public List<TodoList> getAllTodoLists(Long userId) {
         return todoListRepository.findTodoListsByUser_UserId(userId);
+    }
+
+    public TodoList modifyTodoList(TodoList todoList, Long userId) {
+        TodoList foundTodoList = todoListRepository.findTodoListByTodoListIdAndUser_UserId(todoList.getTodoListId(), userId);
+
+        if (foundTodoList != null){
+            if (foundTodoList.getTodoListName() != todoList.getTodoListName()){
+                foundTodoList.setTodoListName(todoList.getTodoListName());
+                todoListRepository.save(foundTodoList);
+            }
+
+        }
+        return foundTodoList;
     }
 
 
