@@ -34,18 +34,26 @@ public class UserService {
     public User updateUser(User user, Long userId) {
         User foundUser = userRepository.findById(userId).get();
 
-        if (user.getUsername() != null){
+        if (user.getUsername() != null) {
             foundUser.setUsername(user.getUsername());
         }
 
-        if (user.getPassword() != null){
+        if (user.getPassword() != null) {
             foundUser.setPassword(user.getPassword());
         }
 
-        if (user.getTodoLists() != null){
+        if (user.getTodoLists() != null) {
             foundUser.setTodoLists(user.getTodoLists());
         }
 
         return userRepository.save(foundUser);
+    }
+
+    public String deleteUser(Long userId) {
+        User foundUser = userRepository.findById(userId).get();
+
+        userRepository.delete(foundUser);
+
+        return "Successfully deleted User with id: " + userId;
     }
 }

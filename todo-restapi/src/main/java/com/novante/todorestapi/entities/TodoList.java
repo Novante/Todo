@@ -9,7 +9,7 @@ import java.util.List;
 public class TodoList {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long todoListId;
 
     private String todoListName;

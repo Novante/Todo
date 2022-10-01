@@ -7,14 +7,14 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
     private String username;
 
     private String password;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE)
     private List<TodoList> todoLists;
 
     public Long getUserId() {
