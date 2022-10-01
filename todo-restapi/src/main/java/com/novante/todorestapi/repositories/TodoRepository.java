@@ -12,4 +12,5 @@ public interface TodoRepository extends CrudRepository<Todo, Long> {
 
     List<Todo> findTodosByTodoList_TodoListIdAndTodoList_User_UserId(Long todoListId, Long userId);
 
+    Todo findTodoByTodoIdAndTodoList_User_UserId(Long todoId, Long userId);
 }

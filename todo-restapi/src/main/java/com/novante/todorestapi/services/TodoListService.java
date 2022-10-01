@@ -43,13 +43,11 @@ public class TodoListService {
     public TodoList modifyTodoList(TodoList todoList, Long userId) {
         TodoList foundTodoList = todoListRepository.findTodoListByTodoListIdAndUser_UserId(todoList.getTodoListId(), userId);
 
-        if (foundTodoList != null){
-            if (foundTodoList.getTodoListName() != todoList.getTodoListName()){
+            if (foundTodoList.getTodoListName() != null){
                 foundTodoList.setTodoListName(todoList.getTodoListName());
                 todoListRepository.save(foundTodoList);
             }
 
-        }
         return foundTodoList;
     }
 

@@ -1,5 +1,7 @@
 package com.novante.todorestapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,7 @@ public class Todo {
 
     private String todoContent;
 
+    @JsonIgnore
     @ManyToOne
     private TodoList todoList;
 

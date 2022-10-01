@@ -22,6 +22,7 @@ public class TodoService {
     public Todo createTodoItem(Todo todo, Long listId, Long userId) {
         TodoList foundTodoList = todoListRepository.findTodoListByTodoListIdAndUser_UserId(listId, userId);
         foundTodoList.getTodoItems().add(todo);
+        todo.setTodoList(foundTodoList);
         todoRepository.save(todo);
         todoListRepository.save(foundTodoList);
 
@@ -33,4 +34,17 @@ public class TodoService {
         return foundTodos;
     }
 
+    public Todo modifyTodoItem(Todo todoItem, Long userId) {
+        Todo foundTodoItem = todoRepository.findTodoByTodoIdAndTodoList_User_UserId(todoItem.getTodoId(), userId);
+
+            if (todoItem.getTodoName() != null){
+                foundTodoItem.setTodoName(todoItem.getTodoName());
+            }
+            if (todoItem.getTodoContent() != null){
+                foundTodoItem.setTodoContent(todoItem.getTodoContent());
+            }
+
+            todoRepository.save(foundTodoItem);
+        return foundTodoItem;
+    }
 }

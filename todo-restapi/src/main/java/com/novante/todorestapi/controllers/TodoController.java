@@ -26,4 +26,10 @@ public class TodoController {
         return todoService.createTodoItem(todoItem, listId, userId);
     }
 
+    @PatchMapping("/userId/{userId}")
+    public Todo modifyTodoItem(@RequestBody Todo todoItem, @PathVariable Long userId) {
+        return todoService.modifyTodoItem(todoItem, userId);
+    }
+
+
 }
