@@ -17,19 +17,24 @@ public class TodoController {
         this.todoService = todoService;
     }
 
-    @PostMapping("/list/{userId}")
+    @PostMapping("/list/userId/{userId}")
     public TodoList createTodoList(@RequestBody TodoList todoList, @PathVariable Long userId) {
         return todoService.createTodoList(todoList, userId);
     }
 
-    @GetMapping("/list/{userId}")
+    @GetMapping("/listId/userId/{userId}")
     public List<TodoList> getAllTodoLists(@PathVariable Long userId) {
         return todoService.getAllTodoLists(userId);
     }
 
-    @PatchMapping("/list/{userId}")
+    @PatchMapping("/listId/userId/{userId}")
     public TodoList modifyTodoList(@RequestBody TodoList todoList, @PathVariable Long userId){
         return todoService.modifyTodoList(todoList, userId);
+    }
+
+    @DeleteMapping("/listId/{todoListId}/userId/{userId}")
+    public String deleteTodoList(@PathVariable Long todoListId, @PathVariable Long userId){
+        return todoService.deleteTodoList(todoListId, userId);
     }
 
 

@@ -18,7 +18,7 @@ public class TodoList {
     @JsonIgnore
     private User user;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE)
     private List<Todo> todoItems;
 
     public Long getTodoListId() {

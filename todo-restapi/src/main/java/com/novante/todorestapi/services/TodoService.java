@@ -31,8 +31,8 @@ public class TodoService {
 
         if (foundUser.isPresent()){
             foundUser.get().getTodoLists().add(todoList);
-//            todoList.setUser(foundUser.get());
-//            todoListRepository.save(todoList);
+            todoList.setUser(foundUser.get());
+            todoListRepository.save(todoList);
             userRepository.save(foundUser.get());
         }
 
@@ -54,6 +54,14 @@ public class TodoService {
 
         }
         return foundTodoList;
+    }
+
+    public String deleteTodoList(Long todoListId, Long userId) {
+        TodoList foundTodoList = todoListRepository.findTodoListByTodoListIdAndUser_UserId(todoListId, userId);
+        Optional<User> foundUser = userRepository.findById(userId);
+        foundUser.get().getTodoLists().remove(foundTodoList);
+        todoListRepository.delete(foundTodoList);
+        return "Successfully deleted Todo-list with id: " + todoListId;
     }
 
 
