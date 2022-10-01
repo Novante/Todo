@@ -1,11 +1,11 @@
 package com.novante.todorestapi.controllers;
 
-import com.novante.todorestapi.entities.TodoEntity;
+import com.novante.todorestapi.entities.Todo;
+import com.novante.todorestapi.entities.TodoList;
 import com.novante.todorestapi.services.TodoService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/todo")
@@ -17,9 +17,24 @@ public class TodoController {
         this.todoService = todoService;
     }
 
-    @PostMapping("/create")
-    public TodoEntity createTodoEntity(@RequestBody TodoEntity todoEntity){
-        return todoService.createTodo(todoEntity);
+    @PostMapping("/list/{userId}")
+    public TodoList createTodoList(@RequestBody TodoList todoList, @PathVariable Long userId) {
+        return todoService.createTodoList(todoList, userId);
     }
 
+    @GetMapping("/list/{userId}")
+    public List<TodoList> getAllTodoLists(@PathVariable Long userId) {
+        return todoService.getAllTodoLists(userId);
+    }
+
+
+//    @PostMapping("/item")
+//    public Todo createTodoItem(@RequestBody Todo todo){
+//        return todoService.createTodoItem(todo);
+//    }
+//
+//    @GetMapping("/items")
+//    public List<Todo> getAllTodoItemsByUserId(){
+//        return todoService.getAllTodoItemsByUserId();
+//    }
 }
