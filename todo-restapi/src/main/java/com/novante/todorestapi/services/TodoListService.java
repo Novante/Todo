@@ -13,12 +13,10 @@ import java.util.Optional;
 @Service
 public class TodoListService {
 
-    private final TodoRepository todoRepository;
     private final TodoListRepository todoListRepository;
     private final UserRepository userRepository;
 
     public TodoListService(TodoRepository todoRepository, TodoListRepository todoListRepository, UserRepository userRepository) {
-        this.todoRepository = todoRepository;
         this.todoListRepository = todoListRepository;
         this.userRepository = userRepository;
     }
@@ -32,7 +30,6 @@ public class TodoListService {
             todoListRepository.save(todoList);
             userRepository.save(foundUser.get());
         }
-
         return todoList;
     }
 
@@ -58,7 +55,4 @@ public class TodoListService {
         todoListRepository.delete(foundTodoList);
         return "Successfully deleted Todo-list with id: " + todoListId;
     }
-
-
-
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/todolist")
 public class TodoListController {
@@ -35,17 +36,4 @@ public class TodoListController {
     public String deleteTodoList(@PathVariable Long todoListId, @PathVariable Long userId){
         return todoListService.deleteTodoList(todoListId, userId);
     }
-
-
-
-
-//    @PostMapping("/item")
-//    public Todo createTodoItem(@RequestBody Todo todo){
-//        return todoService.createTodoItem(todo);
-//    }
-//
-//    @GetMapping("/items")
-//    public List<Todo> getAllTodoItemsByUserId(){
-//        return todoService.getAllTodoItemsByUserId();
-//    }
 }

@@ -1,9 +1,8 @@
-import {Button, Form, Popconfirm, Table} from "antd";
 import {useContext, useEffect, useRef, useState} from "react";
 import React from "react";
-import Input from "antd/es/input/Input";
 import {dataApi} from "../Api";
 import axios from "axios";
+import RenderTodos from "../components/RenderTodos";
 
 const Homepage = () => {
 
@@ -14,7 +13,6 @@ const Homepage = () => {
     }, [])
 
     useEffect(() => {
-        console.log('farsatacklare', dataSource)
     }, [dataSource])
 
     const fetchTodos = async () => {
@@ -32,21 +30,20 @@ const Homepage = () => {
             <div style={{display: 'flex', justifyContent: "center", textAlign: 'left', flexDirection: 'column', alignItems: 'center', width: '50%', border: '1px solid'}}>
                 <table style={{...styles.box, width: '100%'}}>
                     <tr style={{height: 50, ...styles.box, backgroundColor: '#f7f7f7'}}>
-                        <th style={{...styles.box, width: '20%'}}>Titel</th>
-                        <th style={{...styles.box, width: '80%'}}>Beskrivning</th>
+                        <th style={{...styles.box, width: '20%', paddingLeft: '4px'}}>Titel</th>
+                        <th style={{...styles.box, width: '70%', paddingLeft: '4px'}}>Beskrivning</th>
+                        <th style={{...styles.box, width: '10%', textAlign: 'center'}}>Edit</th>
                     </tr>
-                    {dataSource.map((dataSource) => {
+                    {dataSource.map((dataSource, index) => {
                         return (
-                            <tr key={dataSource.todoId} style={{height: 50}}>
-                                <td style={styles.box}>{dataSource.todoName}</td>
-                                <td style={styles.box}>{dataSource.todoContent}</td>
-                            </tr>
+                           <RenderTodos id={dataSource.todoId} key={dataSource.todoId} dataSource={dataSource} setDataSource={setDataSource}/>
                         )
                     })}
                 </table>
-                <Button onClick={handleNewTodoPress} style={{marginRight: 'auto', marginTop: 5}}>
+                <button onClick={handleNewTodoPress} style={{marginRight: 'auto', marginTop: 5}}>
                     Ny todo
-                </Button>
+                </button>
+
             </div>
         </div>
 
@@ -57,7 +54,9 @@ const Homepage = () => {
 const styles = {
     box: {
         border: '1px solid #e6e6e6'
-    }
+    },
+
+
 }
 
 export default Homepage;
