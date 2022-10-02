@@ -26,14 +26,20 @@ const RenderTodos = ({dataSource, id}) => {
         <tr style={styles.box}>
             {
                 editMode === true ?
-                   <td> <input type="text" onChange={e => setEditTitle(e.target.value)} style={styles.editMode} value={editTitle}></input></td>
+                   <td>
+                       <input type="text" onChange={e => setEditTitle(e.target.value)} style={styles.editMode} value={editTitle}></input>
+                   </td>
                     :
                     <td style={{paddingLeft: '4px'}}>{editTitle}</td>
             }
 
             {
                 editMode === true ?
-                    <td><input type="text" onChange={e => setEditContent(e.target.value)} style={styles.editMode} value={editContent}></input></td>
+                    <td>
+                        <input type="text" onChange={e => setEditContent(e.target.value)} style={{...styles.editMode, width: '90%'}} value={editContent}></input>
+                        <button style={{marginLeft: '3%'}}>X</button>
+                    </td>
+
                         :
                     <td style={{...styles.box, lineHeight: '50px', padding: 0, paddingLeft: '4px'}}>{editContent}</td>
 
